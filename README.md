@@ -1,6 +1,4 @@
-﻿Database Migrations without Merge Conflicts.
-
-Current status: **Proof of Concept**
+﻿Current status: **Proof of Concept**
 
 You can't yet use this in production.
 

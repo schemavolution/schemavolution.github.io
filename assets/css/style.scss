@@ -6,3 +6,14 @@
 .page-header {
     background-image: linear-gradient(120deg, #072709, #159957);
 }
+
+.page-nav {
+    background-color: #d9ecde;
+    padding: 2px;
+    a {
+        padding: 0 0.5em;
+        color: #202d39;
+        background: #cde2d3;
+        font-size: larger;
+    }
+}
