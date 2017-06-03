@@ -1,6 +1,4 @@
-﻿# DbVolver
-
-Database Migrations without Merge Conflicts.
+﻿Database Migrations without Merge Conflicts.
 
 Current status: **Proof of Concept**
 
