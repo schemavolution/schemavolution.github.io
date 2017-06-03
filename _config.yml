@@ -1,3 +1,4 @@
-site.title: DbVolver
-site.description: Database migrations without merge conflicts
+site:
+  title: DbVolver
+  description: Database migrations without merge conflicts
 theme: jekyll-theme-cayman
