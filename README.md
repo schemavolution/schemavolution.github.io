@@ -1,4 +1,8 @@
-﻿Current status: **Proof of Concept**
+﻿---
+layout: default
+---
+
+Current status: **Proof of Concept**
 
 You can't yet use this in production.
 
