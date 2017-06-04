@@ -1,9 +1,9 @@
 ---
 layout: childpage
-title: DbVolver Roadmap
+title: Schemavolution Roadmap
 ---
 
-The goal of DbVolver is to bring the benefits of partial ordering to managing database migrations. These include:
+The goal of Schemavolution is to bring the benefits of partial ordering to managing database migrations. These include:
 
 - Supporting parallel development on teams
 - Optimizing database deployment scripts
@@ -45,12 +45,12 @@ Even though the tool does not require Entity Framework, it works best with EF. T
 2. Verify-Migrations to run verification on the model, compare it with the EF model, and compare it with the database
 3. Add-Migration (or similar) to generate code based on EF model
 4. Unit test to compare the migration model with the EF model, and fail on mismatch
-5. Conversion of an EF Migrations project to DbVolver, including mapping the __MigrationHistory table at deploy time
+5. Conversion of an EF Migrations project to Schemavolution, including mapping the __MigrationHistory table at deploy time
 
 ## Data Migration
 
-Initially DbVolver is all about the schema. But there is a real opportunity to address data migration as well. The tool can generate a SQL MERGE statement based on specified rows that migrates data from one structure to another. Layer a data migration into the specification between a Create (new structure) and Drop (old structure), and the tool will decide if the data migration needs to take place. If the target database does not yet have the old structure, then the data migration can be skipped altogether.
+Initially Schemavolution is all about the schema. But there is a real opportunity to address data migration as well. The tool can generate a SQL MERGE statement based on specified rows that migrates data from one structure to another. Layer a data migration into the specification between a Create (new structure) and Drop (old structure), and the tool will decide if the data migration needs to take place. If the target database does not yet have the old structure, then the data migration can be skipped altogether.
 
 ## Domain Driven Design
 
-An initial concept of DDD is in the early versions of the project. This could be fleshed out to provide an optional set of tools for applying DDD conventions to the data model. For example, an AggregateRoot is a single entity with a primary key and child entities; references to the primary keys of the child entities are disallowed. Entity and ValueType could be represented by different C# types, and enforce different sets of conventions. This area will become more clear as DbVolver is used in more production scenarios.
+An initial concept of DDD is in the early versions of the project. This could be fleshed out to provide an optional set of tools for applying DDD conventions to the data model. For example, an AggregateRoot is a single entity with a primary key and child entities; references to the primary keys of the child entities are disallowed. Entity and ValueType could be represented by different C# types, and enforce different sets of conventions. This area will become more clear as Schemavolution is used in more production scenarios.

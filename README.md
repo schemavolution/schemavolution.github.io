@@ -101,7 +101,7 @@ What about Entity Framework Migrations? FluentMigrator? DbUp? RoundhousE? Django
 
 All of these tools assume a totally ordered sequence of migrations. Total ordering makes merging hard. Just Google merging in any of these projects and you will see how difficult it is.
 
-DbVolver is the first tool that defines a partial order of migrations. I don't expect it to be the last, but until then, enjoy the perks that only partial order can give you.
+Schemavolution is the first tool that defines a partial order of migrations. I don't expect it to be the last, but until then, enjoy the perks that only partial order can give you.
 
 * Simple merging on multi-developer teams
 * Elimination of unnecessary intermediate steps
