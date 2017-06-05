@@ -1,9 +1,7 @@
 ---
 layout: childpage
-title: The MIT License
+title: The MIT License (MIT)
 ---
-
-## The MIT License (MIT)
 
 Copyright (c) 2017 Michael L Perry
 
