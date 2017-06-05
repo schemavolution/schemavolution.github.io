@@ -5,15 +5,26 @@
 
 .page-header {
     background-color: #ffffff;
-    background-image: url("../logo.png");
-    background-position-x: 0px;
-    background-position-y: 100px;
-    background-repeat: no-repeat;
-    .project-name {
-        color: #000000;
-    }
-    .project-tagline {
-        color: #222222;
+    background-image: none;
+    padding: 2rem 0;
+    .project-head {
+        display: inline-block;
+        .project-logo {
+            float: left;
+            width: 154px;
+            height: 178px;
+            @media only screen and (max-width: 425px) {
+                width: 77px;
+                height: 89px;
+            }
+        }
+        .project-name {
+            color: #000000;
+            display: inline-block;
+        }
+        .project-tagline {
+            color: #222222;
+        }
     }
 }
 
