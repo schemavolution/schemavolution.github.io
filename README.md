@@ -1,6 +1,6 @@
-﻿Current status: **Proof of Concept**
+﻿Current status: **Approaching MVP**
 
-You can't yet use this in production.
+We're getting real close to a NuGet package!
 
 ## Your database's genome
 
@@ -141,6 +141,20 @@ Evolve-Database -DatabaseName Mathematicians -MasterConnectionString "Data Sourc
 
 Or you can take a look at the SQL script before you apply it. Just apply the `-Script` flag to the command.
 
+## Gene splicing (a.k.a. merging)
+
+You're probably working with a team on your database application. Different members of your team will be editing different parts of the genome at the same time. What happens when they merge their code?
+
+You will have applied one set of genes to your development database before receiving their edits. They will have applied a different set of genes before receiving yours. As long as the two don't conflict, then Schemavolution will splice the two sets together. Their edits will apply cleanly to your database, and yours will apply to theirs.
+
+When will gene splicing not work?
+
+- If you choose the same table names
+- If you are working on the same table and choose the same column names
+- If you both define a different primary key for the same table
+
+So in general, it will usually work fine.
+
 ## Mutating your schema
 
 If you make a mistake, do not delete a gene! Instead, create a new gene that mutates the schema. Rename a table:
@@ -182,7 +196,7 @@ private static PrimaryKeySpecification DefineMathematician(SchemaSpecification s
 
 As long as you always add genes, database deployment will be successful. To any environment. In any order. But if you delete one, then you will have to force the tool to roll back the gene, which could result in data loss.
 
-## How are genes expressed as SQL scripts? (a.k.a. phenotype)
+## Phenotype (a.k.a generated SQL scripts)
 
 Genes are expressed as a phenotype (SQL script) when you evolve the datbase schema. These SQL scripts are generated at the time of evolution. A set of related genes combined with the current structure of the database produces the desired script.
 
@@ -250,11 +264,11 @@ ALTER TABLE [Mathematicians].[dbo].[Mathematician]
 
 Schemavolution will generate the optimal SQL script to apply the genes that have been added since the last evolution.
 
-## Rolling back
+## CRISPR/Cas9 gene editing (a.k.a rolling back)
 
-While it's best to only add genes, sometimes you will decide to take them away. Maybe you've only evolved your development database, and you don't want those genes getting into test and production.
+While it's best to only add genes, sometimes you will decide to edit or delete them. Maybe you've only evolved your development database, and you don't want those genes getting into test and production.
 
-If you try to evolve a database that already has genes that are no longer in your genome, the process will fail. You can force the `DatabaseEvolver` to roll back those genes:
+If you try to evolve a database that already has genes that are different or no longer in your genome, the process will fail. You can force the `DatabaseEvolver` to roll back those genes:
 
 ```csharp
 var evolver = new DatabaseEvolver(
