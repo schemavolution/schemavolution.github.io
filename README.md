@@ -57,7 +57,7 @@ private static PrimaryKeySpecification DefineMathematician(SchemaSpecification s
 }
 ```
 
-You can group genes together into chromasomes -- methods that define entire tables:
+You can group genes together into chromosomes -- methods that define entire tables:
 
 ```csharp
 private static void DefineContribution(SchemaSpecification schema, PrimaryKeySpecification mathematicianKey)
@@ -99,7 +99,7 @@ private static void DefineContribution(SchemaSpecification schema, PrimaryKeySpe
 }
 ```
 
-Organize these genes into chromasomes to keep them nice and neat. Put them in functions. Group them in classes. The organization is up to you. They don't need to be put in sequential order.
+Organize these genes into chromosomes to keep them nice and neat. Put them in functions. Group them in classes. The organization is up to you. They don't need to be put in sequential order.
 
 ## Evolving your database
 
