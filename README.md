@@ -1,6 +1,29 @@
-﻿Current status: **Approaching MVP**
+﻿Current status: **Beta**
 
-We're getting real close to a NuGet package!
+Install the NuGet package:
+
+```
+Install-Package Schemavolution.EntityFramework
+```
+
+Create a new console application. Initialize a `DatabaseEvolver`:
+
+```csharp
+class Program
+{
+    static void Main(string[] args)
+    {
+        var evolver = new DatabaseEvolver(
+            "Mathematicians",
+            "Data Source=(local);Initial Catalog=master;Integrated Security=true;",
+            new Genome());
+
+        evolver.EvolveDatabase();
+    }
+}
+```
+
+Create a `Genome` class and run the program. Watch the database evolve.
 
 ## Your database's genome
 
