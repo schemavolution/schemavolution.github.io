@@ -1,12 +1,12 @@
 ﻿Current status: **Beta**
 
-Install the NuGet package:
+Create a new console application. Install the NuGet package:
 
 ```
 Install-Package Schemavolution.EntityFramework
 ```
 
-Create a new console application. Initialize a `DatabaseEvolver`:
+Initialize a `DatabaseEvolver`:
 
 ```csharp
 class Program
