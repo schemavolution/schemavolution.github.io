@@ -17,7 +17,7 @@ In the following feature lists ~~strikethrough~~ indicates that the feature is c
 
 The minimum viable product includes specifications for all valid column types and common operations. Support will be added for:
 
-1. Drop column/table/index/foreign key
+1. Drop ~~column~~ /table/index/foreign key
 2. Rename column/table
 3. Automatic rename of index/foreign key to preserve convention
 
@@ -41,7 +41,7 @@ Ensure that deployment will be successful before making the attempt. Situations 
 
 Even though the tool does not require Entity Framework, it works best with EF. The tooling is especially improved when combined with EF. Tooling support will include:
 
-1. Update-Database (or similar) to apply migrations: -Force to migrate down to a previous version
+1. ~~Update-Database (or similar) to apply migrations: -Force to migrate down to a previous version~~
 2. Verify-Migrations to run verification on the model, compare it with the EF model, and compare it with the database
 3. Add-Migration (or similar) to generate code based on EF model
 4. Unit test to compare the migration model with the EF model, and fail on mismatch

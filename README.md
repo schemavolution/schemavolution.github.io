@@ -1,29 +1,18 @@
 ﻿Current status: **Beta**
 
-Create a new console application. Install the NuGet package:
+Create a new assembly. Install the NuGet package:
 
-```
+```powershell
 Install-Package Schemavolution.EntityFramework
 ```
 
-Initialize a `DatabaseEvolver`:
+Create a `Genome` class and implement `IGenome` as described below. In the Package Manager Console, run:
 
-```csharp
-class Program
-{
-    static void Main(string[] args)
-    {
-        var evolver = new DatabaseEvolver(
-            "Mathematicians",
-            "Data Source=(local);Initial Catalog=master;Integrated Security=true;",
-            new Genome());
-
-        evolver.EvolveDatabase();
-    }
-}
+```powershell
+Evolve-Database
 ```
 
-Create a `Genome` class and run the program. Watch the database evolve.
+And watch your database evolve.
 
 ## Your database's genome
 
@@ -128,41 +117,13 @@ Organize these genes into chromosomes to keep them nice and neat. Put them in fu
 
 After adding some genes, you are ready to evolve your database. This process will apply any new genes that have been defined since the last evolution.
 
-Create a `DatabaseEvolver` and provide the **master** connection string and the genome.
-
-```csharp
-class DatabaseConfig
-{
-    public static void Configure(HttpServerUtility server)
-    {
-        var master = new SqlConnectionStringBuilder
-        {
-            DataSource = @"(LocalDB)\MSSQLLocalDB",
-            InitialCatalog = "master",
-            IntegratedSecurity = true
-        };
-
-        string fileName = server.MapPath("~/App_Data/Mathematicians.mdf");
-        string databaseName = "Mathematicians";
-        var evolver = new DatabaseEvolver(
-            databaseName,
-            fileName,
-            master.ConnectionString,
-            new Genome());
-        evolver.EvolveDatabase();
-    }
-}
-```
-
-Put the above class in `App_Start`, and call `DatabaseConfig.Configure(Server)` from `Application_Start` in `Global.asax.cs`.
-
-In the near future, you will also be able to do this from PowerShell:
+You can evolve the database from the Package Manager Console. Select the assembly containing the genome as the default project, and set the Web application as the startup project. Then run:
 
 ```powershell
-Evolve-Database -DatabaseName Mathematicians -MasterConnectionString "Data Source=(local);Initial Catalog=master;Integrated Security=True;"
+Evolve-Database
 ```
 
-Or you can take a look at the SQL script before you apply it. Just apply the `-Script` flag to the command.
+Your genome will be applied to the database described in `web.config` of the startup project.
 
 ## Gene splicing (a.k.a. merging)
 
@@ -291,31 +252,19 @@ Schemavolution will generate the optimal SQL script to apply the genes that have
 
 While it's best to only add genes, sometimes you will decide to edit or delete them. Maybe you've only evolved your development database, and you don't want those genes getting into test and production.
 
-If you try to evolve a database that already has genes that are different or no longer in your genome, the process will fail. You can force the `DatabaseEvolver` to roll back those genes:
+If you try to evolve a database that already has genes that are different or no longer in your genome, the process will fail. You can force `Evolve-Database` to roll back those genes:
 
-```csharp
-var evolver = new DatabaseEvolver(
-    databaseName,
-    fileName,
-    master.ConnectionString,
-    new Genome());
-evolver.DevolveDatabase();
-evolver.EvolveDatabase();
+```powershell
+Evolve-Database -Force
 ```
 
-**Warning:** Devolving a database may cause data loss. For example, if you started with the full `Mathematician` table and deleted the `BirthYear` and `DeathYear` genes, `DevolveDatabase` would run the following script:
+**Warning:** Devolving a database may cause data loss. For example, if you started with the full `Mathematician` table and deleted the `BirthYear` and `DeathYear` genes, `Evolve-Database -Force` would run the following script:
 
 ```sql
 ALTER TABLE [Mathematicians].[dbo].[Mathematician]
     DROP COLUMN [DeathYear]
 ALTER TABLE [Mathematicians].[dbo].[Mathematician]
     DROP COLUMN [BirthYear]
-```
-
-In the near future, you will be able to do this in PowerShell using the `-Force` switch:
-
-```powershell
-Evolve-Database -DatabaseName Mathematicians -MasterConnectionString "Data Source=(local);Initial Catalog=master;Integrated Security=True;" -Force
 ```
 
 ## Partial order
